@@ -1,4 +1,6 @@
 {
+  "version": 2,
+  "name": "chatgpt-api",
   "builds": [
     {
       "src": "dist/main.js",
