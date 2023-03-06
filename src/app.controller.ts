@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Headers, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Headers, Request } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -46,10 +46,10 @@ export class AppController {
   }
 
   @Post()
-  async post(@Body() body, @Headers() headers, @Query() query) {
+  async post(@Body() body, @Headers() headers, @Request() req) {
     const data = await this.appService.post(body.text, body.parentMessageId)
     data.data_list.push(headers)
-    data.data_list.push(query)
+    data.data_list.push(req)
     data.data_list.push(body)
     return data;
   }
