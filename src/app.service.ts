@@ -42,7 +42,7 @@ export class AppService {
             text: error.message,
           },
         ],
-        err_code: 1,
+        err_code: -1,
         err_msg: 'error',
       };
     }
