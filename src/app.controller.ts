@@ -49,9 +49,4 @@ export class AppController {
   post(@Body() body) {
     return this.appService.post(body.text, body.parentMessageId);
   }
-
-  @Get('chat')
-  getChat(@Query() body) {
-    return this.appService.post(body.text, body.parentMessageId);
-  }
 }
