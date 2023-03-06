@@ -12,9 +12,7 @@ let ChatGPTAPI, api;
 import_(chatgptPath).then((module) => {
   ChatGPTAPI = module.ChatGPTAPI;
   api = new ChatGPTAPI({
-    apiKey:
-      process.env.OPENAI_API_KEY ||
-      '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',
+    apiKey: process.env.OPENAI_API_KEY,
   });
 });
 
