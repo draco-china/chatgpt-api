@@ -18,9 +18,11 @@ import_(chatgptPath).then((module) => {
 
 @Injectable()
 export class AppService {
-  async post(text: string, options: SendMessageOptions) {
+  async post(text: string, parentMessageId: string) {
     try {
-      const result = await api.sendMessage(text, options);
+      const result = await api.sendMessage(text, {
+        parentMessageId: parentMessageId,
+      });
       return {
         data_list: [
           {
