@@ -46,10 +46,9 @@ export class AppController {
   }
 
   @Post()
-  async post(@Body() body, @Headers() headers, @Request() req) {
+  async post(@Body() body, @Headers() headers) {
     const data = await this.appService.post(body.text, body.parentMessageId)
     data.data_list.push(headers)
-    data.data_list.push(req)
     data.data_list.push(body)
     return data;
   }
