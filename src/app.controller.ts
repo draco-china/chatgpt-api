@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Headers } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -48,5 +48,10 @@ export class AppController {
   @Post()
   post(@Body() body) {
     return this.appService.post(body.text, body.parentMessageId);
+  }
+
+  @Post('test')
+  weixin(@Body() body, @Headers() headers) {
+    return headers;
   }
 }
