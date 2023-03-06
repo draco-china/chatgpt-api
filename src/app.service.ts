@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import type { SendMessageOptions } from 'chatgpt';
 import { import_ } from '@brillout/import';
 import { resolve } from 'path';
 
@@ -42,7 +41,7 @@ export class AppService {
             text: error.message,
           },
         ],
-        err_code: -1,
+        err_code: 1,
         err_msg: 'error',
       };
     }
