@@ -34,8 +34,5 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# package manager
-package-lock.json
-
 # vercel
 .vercel
