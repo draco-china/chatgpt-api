@@ -1,12 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import type { SendMessageOptions } from 'chatgpt';
 import { import_ } from '@brillout/import';
+import { resolve } from 'path';
+
+const chatgptPath = resolve(
+  __dirname,
+  './../node_modules/chatgpt/build/index.js',
+);
 
 let ChatGPTAPI, api;
-import_('chatgpt').then((module) => {
+import_(chatgptPath).then((module) => {
   ChatGPTAPI = module.ChatGPTAPI;
   api = new ChatGPTAPI({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey:
+      process.env.OPENAI_API_KEY ||
+      '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',
   });
 });
 
