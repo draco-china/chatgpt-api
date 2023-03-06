@@ -52,6 +52,10 @@ export class AppController {
 
   @Post('test')
   weixin(@Body() body, @Headers() headers) {
-    return headers;
+    return {
+      data_list: [headers, body],
+      err_code: 0,
+      err_msg: 'success',
+    };
   }
 }
