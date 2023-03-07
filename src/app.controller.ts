@@ -49,6 +49,8 @@ export class AppController {
   async post(@Body() body, @Headers() headers) {
     const data = await this.appService.post(body.text, body.parentMessageId);
     data.data_list.push(headers);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     data.data_list.push(`${body}`.replace(': "="', ''));
     return data;
   }
