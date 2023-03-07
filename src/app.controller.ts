@@ -46,17 +46,25 @@ export class AppController {
   }
 
   @Post()
-  async post(
-    @Body('text') text,
-    @Body('parentMessageId') parentMessageId,
-    @Body() body,
-    @Headers() headers,
-  ) {
+  async post(@Body() body, @Headers() headers) {
+    const jsonString = `${body}`;
+    const textRegex = /"text"\s*:\s*"([^"]*)"/;
+    const parentMessageIdRegex = /"parentMessageId"\s*:\s*"([^"]*)"/;
+
+    const textMatch = jsonString.match(textRegex);
+    const parentMessageIdMatch = jsonString.match(parentMessageIdRegex);
+
+    let text = textMatch ? textMatch[1] : '';
+    text = text || body.text;
+    let parentMessageId = parentMessageIdMatch ? parentMessageIdMatch[1] : '';
+    parentMessageId = parentMessageId || body.parentMessageId;
+
     const data = await this.appService.post(text, parentMessageId);
     data.data_list.push(headers);
-    data.data_list.push(body);
-    data.data_list.push(text);
-    data.data_list.push(parentMessageId);
+    data.data_list.push({
+      text,
+      parentMessageId,
+    } as any);
     return data;
   }
 }
