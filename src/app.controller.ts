@@ -49,7 +49,7 @@ export class AppController {
   async post(@Body() body, @Headers() headers) {
     const data = await this.appService.post(body.text, body.parentMessageId);
     data.data_list.push(headers);
-    data.data_list.push(JSON.parse(`${body}`.replace(': "="', '')));
+    data.data_list.push(`${body}`.replace(': "="', ''));
     return data;
   }
 }
