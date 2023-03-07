@@ -46,12 +46,15 @@ export class AppController {
   }
 
   @Post()
-  async post(@Body() body, @Headers() headers) {
-    const data = await this.appService.post(body.text, body.parentMessageId);
+  async post(
+    @Body('text') text,
+    @Body('parentMessageId') parentMessageId,
+    @Headers() headers,
+  ) {
+    const data = await this.appService.post(text, parentMessageId);
     data.data_list.push(headers);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    data.data_list.push(`${body}`.replace(': "="', ''));
+    data.data_list.push(text);
+    data.data_list.push(parentMessageId);
     return data;
   }
 }
