@@ -1,3 +1,12 @@
+/*
+ * @Module: module.name
+ * @Description: your description
+ * @Author: draco
+ * @Email: draco.coder@gmail.com
+ * @Github: https://github.com/draco-china
+ * @Date: 2023-03-06 14:09:14
+ * @LastEditTime: 2023-03-07 13:48:50
+ */
 import { Controller, Get, Post, Body, Headers, Request } from '@nestjs/common';
 import { AppService } from './app.service';
 
@@ -61,10 +70,7 @@ export class AppController {
 
     const data = await this.appService.post(text, parentMessageId);
     data.data_list.push(headers);
-    data.data_list.push({
-      text,
-      parentMessageId,
-    } as any);
+    data.data_list.push(JSON.stringify(body) as any);
     return data;
   }
 }
